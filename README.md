@@ -1,4 +1,4 @@
-# cloudwalk_nasa_case
+# Picture of the day
 
 A new Flutter project.
 
