@@ -14,13 +14,12 @@ class RemoteRepositoryImpl implements RemoteRepository {
   Future<PictureEntity> fetchImage() async {
     const String defaultUrl = 'https://api.nasa.gov/planetary/apod?api_key=';
     const String apiKey = 'oVyQqfbj4mi1ljYRGktH4ggADkidGgD8mysuf4xU';
+    try {
+      final response = await httpService.get('$defaultUrl$apiKey');
 
-    final response = await httpService.get('$defaultUrl$apiKey');
-
-    if (response.statusCode == 200) {
       final result = json.decode(response.data);
       return PictureEntity.fromJson(result);
-    } else {
+    } catch (error) {
       throw Exception();
     }
   }

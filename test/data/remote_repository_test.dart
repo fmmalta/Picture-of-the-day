@@ -67,5 +67,14 @@ What's happening in the night sky? To help find out, telescopes all over the glo
 ''',
       );
     });
+
+    test('throws an exception if the http call completes with an error',
+        () async {
+      final remoteRepository = MockMockRemoteRepository();
+      when(remoteRepository.fetchImage())
+          .thenAnswer((_) => throw ArgumentError());
+
+      expect(() => remoteRepository.fetchImage(), throwsArgumentError);
+    });
   });
 }
