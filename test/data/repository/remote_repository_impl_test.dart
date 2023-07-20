@@ -4,11 +4,11 @@ import 'package:mockito/mockito.dart';
 import 'package:picture_of_the_day/data/repository/remote_repository_impl.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
 
-import 'remote_repository_test.mocks.dart';
+import 'remote_repository_impl_test.mocks.dart';
 
 class MockRemoteRepository extends Mock implements RemoteRepositoryImpl {}
 
-final PictureEntity picture = PictureEntity(
+final PictureEntity _picture = PictureEntity(
   url:
       'https://apod.nasa.gov/apod/image/2307/MwLaPalma_Rosadzinski_960_annotated.jpg',
   explanation: '''
@@ -22,7 +22,7 @@ void main() {
   group('Picture Of The Day Response', () {
     test('checking if the response returns a picture entity object', () async {
       final remoteRepository = MockMockRemoteRepository();
-      when(remoteRepository.fetchImage()).thenAnswer((_) async => picture);
+      when(remoteRepository.fetchImage()).thenAnswer((_) async => _picture);
 
       final result = await remoteRepository.fetchImage();
 
@@ -31,7 +31,7 @@ void main() {
 
     test('checking if the picture entity object title is not empty', () async {
       final remoteRepository = MockMockRemoteRepository();
-      when(remoteRepository.fetchImage()).thenAnswer((_) async => picture);
+      when(remoteRepository.fetchImage()).thenAnswer((_) async => _picture);
 
       final result = await remoteRepository.fetchImage();
 
@@ -41,7 +41,7 @@ void main() {
 
     test('checking if the picture entity object url is not empty', () async {
       final remoteRepository = MockMockRemoteRepository();
-      when(remoteRepository.fetchImage()).thenAnswer((_) async => picture);
+      when(remoteRepository.fetchImage()).thenAnswer((_) async => _picture);
 
       final result = await remoteRepository.fetchImage();
 
@@ -55,7 +55,7 @@ void main() {
     test('checking if the picture entity object explanation is not empty',
         () async {
       final remoteRepository = MockMockRemoteRepository();
-      when(remoteRepository.fetchImage()).thenAnswer((_) async => picture);
+      when(remoteRepository.fetchImage()).thenAnswer((_) async => _picture);
 
       final result = await remoteRepository.fetchImage();
 

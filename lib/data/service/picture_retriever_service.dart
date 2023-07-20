@@ -12,10 +12,13 @@ class PictureRetrieverService {
   });
 
   Future<PictureEntity> fetchImage() async {
-    try {
-      return await remoteRepository.fetchImage();
-    } catch (error) {
-      return localRepository.retrieveLastestImage();
+    final localPicture = await localRepository.retrieveLastestImage();
+    if (localPicture != null) {
+      return localPicture;
+    } else {
+      final remotePicture = await remoteRepository.fetchImage();
+      await localRepository.storeLastestImage(remotePicture);
+      return remotePicture;
     }
   }
 }

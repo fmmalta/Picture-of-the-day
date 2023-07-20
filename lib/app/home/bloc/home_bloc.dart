@@ -1,15 +1,16 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:picture_of_the_day/data/service/picture_retriever_service.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
+import 'package:picture_of_the_day/service_locator.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final PictureRetrieverService pictureRetrieverService;
+  final pictureRetrieverService = serviceLocator<PictureRetrieverService>();
 
-  HomeBloc(this.pictureRetrieverService) : super(HomeInitial()) {
+  HomeBloc() : super(HomeInitial()) {
     on<RetrieveImageEvent>(_retrieveImage);
   }
 

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:picture_of_the_day/core/http/http_service.dart';
 
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
@@ -16,11 +14,9 @@ class RemoteRepositoryImpl implements RemoteRepository {
     const String apiKey = 'oVyQqfbj4mi1ljYRGktH4ggADkidGgD8mysuf4xU';
     try {
       final response = await httpService.get('$defaultUrl$apiKey');
-
-      final result = json.decode(response.data);
-      return PictureEntity.fromJson(result);
+      return PictureEntity.fromJson(response.data);
     } catch (error) {
-      throw Exception();
+      rethrow;
     }
   }
 }
