@@ -11,7 +11,7 @@ class MockPictureService extends Mock implements PictureRetrieverService {}
 @GenerateNiceMocks([MockSpec<MockPictureService>()])
 void main() {
   late MockMockPictureService mockPictureService;
-  late final PictureEntity _picture;
+  late final PictureEntity picture;
 
   setUp(() {
     mockPictureService = MockMockPictureService();
@@ -19,7 +19,7 @@ void main() {
     //   localRepository: mockLocalRepository,
     //   remoteRepository: mockRemoteRepository,
     // );
-    _picture = PictureEntity(
+    picture = PictureEntity(
       url:
           'https://apod.nasa.gov/apod/image/2307/MwLaPalma_Rosadzinski_960_annotated.jpg',
       explanation: '''
@@ -31,19 +31,19 @@ What's happening in the night sky? To help find out, telescopes all over the glo
 
   group('Picture Retriever Service', () {
     test('check if the fetchImage function is returning an image', () async {
-      when(mockPictureService.fetchImage()).thenAnswer((_) async => _picture);
+      when(mockPictureService.fetchImage()).thenAnswer((_) async => picture);
 
       final result = await mockPictureService.fetchImage();
 
-      expect(result, _picture);
+      expect(result, picture);
     });
 
     test('check if the fetchImage function is returning an error', () async {
-      when(mockPictureService.fetchImage()).thenAnswer((_) async => _picture);
+      when(mockPictureService.fetchImage()).thenAnswer((_) async => picture);
 
       final result = await mockPictureService.fetchImage();
 
-      expect(result, _picture);
+      expect(result, picture);
     });
   });
 }
