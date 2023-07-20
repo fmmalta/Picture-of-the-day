@@ -15,10 +15,6 @@ void main() {
 
   setUp(() {
     mockPictureService = MockMockPictureService();
-    // mockPictureService = MockMockPictureService(
-    //   localRepository: mockLocalRepository,
-    //   remoteRepository: mockRemoteRepository,
-    // );
     picture = PictureEntity(
       url:
           'https://apod.nasa.gov/apod/image/2307/MwLaPalma_Rosadzinski_960_annotated.jpg',
