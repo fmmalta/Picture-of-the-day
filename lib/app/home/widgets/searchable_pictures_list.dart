@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 
-class SearchablePictureList extends StatelessWidget {
+class SearchablePicturesList extends StatelessWidget {
   final List<PictureEntity> pictures;
-  const SearchablePictureList({super.key, required this.pictures});
+  const SearchablePicturesList({super.key, required this.pictures});
 
   @override
   Widget build(BuildContext context) {

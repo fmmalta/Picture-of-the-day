@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 final pictures = state.pictures.reversed.toList();
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
-                  child: SearchablePictureList(pictures: pictures),
+                  child: SearchablePicturesList(pictures: pictures),
                 );
               } else {
                 return const Center(
