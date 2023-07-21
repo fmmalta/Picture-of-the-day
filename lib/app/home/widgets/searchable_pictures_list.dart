@@ -20,7 +20,8 @@ class SearchablePicturesList extends StatelessWidget {
       ),
       filter: (query) => pictures
           .where((picture) =>
-              picture.title.toLowerCase().contains(query.toLowerCase()))
+              picture.title.toLowerCase().contains(query.toLowerCase()) ||
+              DateFormat("dd/MM/yyyy").format(picture.date).contains(query))
           .toList(),
       builder: (picture) {
         return ListTile(

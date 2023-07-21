@@ -1,7 +1,10 @@
 part of 'picture_cubit.dart';
 
 @immutable
-abstract class PictureState {}
+abstract class PictureState extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 class PictureInitial extends PictureState {}
 
