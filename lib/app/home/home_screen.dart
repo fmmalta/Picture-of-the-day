@@ -49,12 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 final pictures = state.pictures.reversed.toList();
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
-                  child: SearchablePicturesList(pictures: pictures),
+                  child: SearchablePicturesList(pictures),
                 );
               } else {
-                return const Center(
-                  child: Text(
-                      'Ops... tivemos um problema. Tente novamente mais tarde.'),
+                return ListView(
+                  children: [
+                    Center(
+                      child: Text(state.toString()),
+                    ),
+                  ],
                 );
               }
             },

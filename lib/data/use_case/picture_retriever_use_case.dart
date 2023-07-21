@@ -23,6 +23,10 @@ class PictureRetrieverUseCase {
   }
 
   Future<List<PictureEntity>> remoteFetchImage() async {
-    return remoteRepository.fetchImages();
+    try {
+      return await remoteRepository.fetchImages();
+    } catch (error) {
+      return await localRepository.retrieveLatestPicturesList();
+    }
   }
 }

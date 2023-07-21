@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 class HttpService {
@@ -6,11 +8,21 @@ class HttpService {
   HttpService(this.dio);
 
   Future<Response> get(String url, {Map<String, dynamic>? headers}) async {
-    final Response response = await dio.get(
-      url,
-      queryParameters: headers,
-    );
+    try {
+      final Response response = await dio.get(
+        url,
+        queryParameters: headers,
+      );
 
-    return response;
+      return response;
+    } on DioException catch (exception) {
+      if (exception.error.runtimeType == SocketException) {
+        throw const SocketException('Falha na conexão');
+      } else {
+        rethrow;
+      }
+    } catch (error) {
+      rethrow;
+    }
   }
 }

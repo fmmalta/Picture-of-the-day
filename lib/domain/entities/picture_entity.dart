@@ -13,10 +13,12 @@ class PictureEntity {
 
   factory PictureEntity.fromJson(Map<String, dynamic> json) {
     return PictureEntity(
-        url: json['url'],
-        explanation: json['explanation'],
-        title: json['title'],
-        date: DateTime.parse(json['date']));
+        url: json['url'] ?? '',
+        explanation: json['explanation'] ?? '',
+        title: json['title'] ?? '',
+        date: json['date'] == null
+            ? DateTime.now()
+            : DateTime.parse(json['date']));
   }
 
   Map<String, dynamic> toJson() {

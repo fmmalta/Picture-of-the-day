@@ -13,14 +13,22 @@ class PictureCubit extends Cubit<PictureState> {
   PictureCubit(this.pictureUseCase) : super(PictureInitial());
 
   Future<void> retrieveImage() async {
-    emit(LoadingImageState());
-    final pictures = await pictureUseCase.fetchImage();
-    emit(ImageRetrievedState(pictures));
+    try {
+      emit(LoadingImageState());
+      final pictures = await pictureUseCase.fetchImage();
+      emit(ImageRetrievedState(pictures));
+    } catch (error) {
+      emit(ImageRetrieveErrorState(error.toString()));
+    }
   }
 
   Future<void> forcedImageRefresh() async {
-    emit(LoadingImageState());
-    final pictures = await pictureUseCase.remoteFetchImage();
-    emit(ImageRetrievedState(pictures));
+    try {
+      emit(LoadingImageState());
+      final pictures = await pictureUseCase.remoteFetchImage();
+      emit(ImageRetrievedState(pictures));
+    } catch (error) {
+      emit(ImageRetrieveErrorState(error.toString()));
+    }
   }
 }

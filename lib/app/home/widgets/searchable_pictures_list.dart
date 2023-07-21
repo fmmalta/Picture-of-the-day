@@ -7,13 +7,14 @@ import 'package:searchable_listview/searchable_listview.dart';
 
 class SearchablePicturesList extends StatelessWidget {
   final List<PictureEntity> pictures;
-  const SearchablePicturesList({super.key, required this.pictures});
+  const SearchablePicturesList(this.pictures, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SearchableList<PictureEntity>.seperated(
       seperatorBuilder: (context, index) => const Divider(),
       initialList: pictures,
+      autoFocusOnSearch: false,
       inputDecoration: const InputDecoration(
         labelText: "Pesquise aqui",
         fillColor: Colors.white,

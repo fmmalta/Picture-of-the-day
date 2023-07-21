@@ -15,3 +15,12 @@ class ImageRetrievedState extends PictureState {
 
   ImageRetrievedState(this.pictures);
 }
+
+class ImageRetrieveErrorState extends PictureState {
+  final String message;
+
+  ImageRetrieveErrorState(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
