@@ -73,10 +73,9 @@ What's happening in the night sky? To help find out, telescopes all over the glo
     test('throws an exception if the http call completes with an error',
         () async {
       final remoteRepository = MockMockRemoteRepository();
-      when(remoteRepository.fetchImages())
-          .thenAnswer((_) => throw ArgumentError());
+      when(remoteRepository.fetchImages()).thenAnswer((_) => throw Exception());
 
-      expect(() => remoteRepository.fetchImages(), throwsArgumentError);
+      expect(() => remoteRepository.fetchImages(), throwsException);
     });
   });
 }

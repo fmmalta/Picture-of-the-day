@@ -3,9 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:mockito/mockito.dart' as _i1;
+import 'dart:async' as _i4;
 
-import 'remote_repository_impl_test.dart' as _i2;
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:picture_of_the_day/core/http/http_service.dart' as _i2;
+import 'package:picture_of_the_day/domain/entities/picture_entity.dart' as _i5;
+
+import 'remote_repository_impl_test.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -18,8 +22,42 @@ import 'remote_repository_impl_test.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeHttpService_0 extends _i1.SmartFake implements _i2.HttpService {
+  _FakeHttpService_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [MockRemoteRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockMockRemoteRepository extends _i1.Mock
-    implements _i2.MockRemoteRepository {}
+    implements _i3.MockRemoteRepository {
+  @override
+  _i2.HttpService get httpService => (super.noSuchMethod(
+        Invocation.getter(#httpService),
+        returnValue: _FakeHttpService_0(
+          this,
+          Invocation.getter(#httpService),
+        ),
+        returnValueForMissingStub: _FakeHttpService_0(
+          this,
+          Invocation.getter(#httpService),
+        ),
+      ) as _i2.HttpService);
+  @override
+  _i4.Future<List<_i5.PictureEntity>> fetchImages() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchImages,
+          [],
+        ),
+        returnValue:
+            _i4.Future<List<_i5.PictureEntity>>.value(<_i5.PictureEntity>[]),
+        returnValueForMissingStub:
+            _i4.Future<List<_i5.PictureEntity>>.value(<_i5.PictureEntity>[]),
+      ) as _i4.Future<List<_i5.PictureEntity>>);
+}

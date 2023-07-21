@@ -3,12 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:picture_of_the_day/domain/entities/picture_entity.dart' as _i4;
+import 'package:picture_of_the_day/domain/entities/picture_entity.dart' as _i6;
+import 'package:picture_of_the_day/domain/picture_repository/picture_local_repository.dart'
+    as _i2;
+import 'package:picture_of_the_day/domain/picture_repository/picture_remote_repository.dart'
+    as _i3;
 
-import 'picture_retriever_service_test.dart' as _i2;
+import 'picture_retriever_service_test.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -21,20 +25,77 @@ import 'picture_retriever_service_test.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakePictureLocalRepository_0 extends _i1.SmartFake
+    implements _i2.PictureLocalRepository {
+  _FakePictureLocalRepository_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakePictureRemoteRepository_1 extends _i1.SmartFake
+    implements _i3.PictureRemoteRepository {
+  _FakePictureRemoteRepository_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [MockPictureService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockMockPictureService extends _i1.Mock
-    implements _i2.MockPictureService {
+    implements _i4.MockPictureService {
   @override
-  _i3.Future<List<_i4.PictureEntity>> fetchImage() => (super.noSuchMethod(
+  _i2.PictureLocalRepository get localRepository => (super.noSuchMethod(
+        Invocation.getter(#localRepository),
+        returnValue: _FakePictureLocalRepository_0(
+          this,
+          Invocation.getter(#localRepository),
+        ),
+        returnValueForMissingStub: _FakePictureLocalRepository_0(
+          this,
+          Invocation.getter(#localRepository),
+        ),
+      ) as _i2.PictureLocalRepository);
+  @override
+  _i3.PictureRemoteRepository get remoteRepository => (super.noSuchMethod(
+        Invocation.getter(#remoteRepository),
+        returnValue: _FakePictureRemoteRepository_1(
+          this,
+          Invocation.getter(#remoteRepository),
+        ),
+        returnValueForMissingStub: _FakePictureRemoteRepository_1(
+          this,
+          Invocation.getter(#remoteRepository),
+        ),
+      ) as _i3.PictureRemoteRepository);
+  @override
+  _i5.Future<List<_i6.PictureEntity>> fetchImage() => (super.noSuchMethod(
         Invocation.method(
           #fetchImage,
           [],
         ),
         returnValue:
-            _i3.Future<List<_i4.PictureEntity>>.value(<_i4.PictureEntity>[]),
+            _i5.Future<List<_i6.PictureEntity>>.value(<_i6.PictureEntity>[]),
         returnValueForMissingStub:
-            _i3.Future<List<_i4.PictureEntity>>.value(<_i4.PictureEntity>[]),
-      ) as _i3.Future<List<_i4.PictureEntity>>);
+            _i5.Future<List<_i6.PictureEntity>>.value(<_i6.PictureEntity>[]),
+      ) as _i5.Future<List<_i6.PictureEntity>>);
+  @override
+  _i5.Future<List<_i6.PictureEntity>> remoteFetchImage() => (super.noSuchMethod(
+        Invocation.method(
+          #remoteFetchImage,
+          [],
+        ),
+        returnValue:
+            _i5.Future<List<_i6.PictureEntity>>.value(<_i6.PictureEntity>[]),
+        returnValueForMissingStub:
+            _i5.Future<List<_i6.PictureEntity>>.value(<_i6.PictureEntity>[]),
+      ) as _i5.Future<List<_i6.PictureEntity>>);
 }

@@ -3,9 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:mockito/mockito.dart' as _i1;
+import 'dart:async' as _i4;
 
-import 'local_repository_impl_test.dart' as _i2;
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:picture_of_the_day/domain/entities/picture_entity.dart' as _i5;
+import 'package:shared_preferences/shared_preferences.dart' as _i2;
+
+import 'local_repository_impl_test.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -18,8 +22,63 @@ import 'local_repository_impl_test.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeSharedPreferences_0 extends _i1.SmartFake
+    implements _i2.SharedPreferences {
+  _FakeSharedPreferences_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [MockLocalRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockMockLocalRepository extends _i1.Mock
-    implements _i2.MockLocalRepository {}
+    implements _i3.MockLocalRepository {
+  @override
+  _i2.SharedPreferences get sharedPreferences => (super.noSuchMethod(
+        Invocation.getter(#sharedPreferences),
+        returnValue: _FakeSharedPreferences_0(
+          this,
+          Invocation.getter(#sharedPreferences),
+        ),
+        returnValueForMissingStub: _FakeSharedPreferences_0(
+          this,
+          Invocation.getter(#sharedPreferences),
+        ),
+      ) as _i2.SharedPreferences);
+  @override
+  _i4.Future<List<_i5.PictureEntity>> retrieveLatestPicturesList() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #retrieveLatestPicturesList,
+          [],
+        ),
+        returnValue:
+            _i4.Future<List<_i5.PictureEntity>>.value(<_i5.PictureEntity>[]),
+        returnValueForMissingStub:
+            _i4.Future<List<_i5.PictureEntity>>.value(<_i5.PictureEntity>[]),
+      ) as _i4.Future<List<_i5.PictureEntity>>);
+  @override
+  _i4.Future<bool> storeLatestPictureList(List<_i5.PictureEntity>? pictures) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #storeLatestPictureList,
+          [pictures],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+        returnValueForMissingStub: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> clearStoredPictures() => (super.noSuchMethod(
+        Invocation.method(
+          #clearStoredPictures,
+          [],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+        returnValueForMissingStub: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+}
