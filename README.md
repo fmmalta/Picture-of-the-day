@@ -1,16 +1,22 @@
-# Picture of the day
 
-A new Flutter project.
+# Picture Of The Day
 
-## Getting Started
+Este projeto tem como intuito exibir uma lista com os as 20 últimas fotos tiradas pela Nasa. Sempre a partir do dia atual menos 20 dias. Ou seja, se você entrar no dia 20/07/2023, a última foto da lista será do dia 01/07/2023 e consequentemente.
 
-This project is a starting point for a Flutter application.
+Foi utilizado nesse projeto:
 
-A few resources to get you started if this is your first Flutter project:
+- Cubit
+- CachedImageNetwork
+- SharedPreferences
+- Dio (Requisicões HTTP)
+- Mockito (Testes)
+- Searchable List View
+- Flutter Screen Util (Redimensionamento em diversos dispositivos)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Foi utilizado o Clean Arch para manutenção, flexibilidade e aplicação dos princípios do SOLID consequentemente.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+
+![App Screenshot](https://i.imgur.com/ecpgCG5.png)
+![App Screenshot](https://i.imgur.com/zYuBOC4.png)
+
