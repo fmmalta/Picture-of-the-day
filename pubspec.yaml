@@ -46,6 +46,7 @@ dependencies:
   flutter_screenutil: ^5.8.4
   searchable_listview:  ^2.4.0
   equatable: ^2.0.5
+  no_context_navigation: ^2.1.2
   
 
 dev_dependencies:

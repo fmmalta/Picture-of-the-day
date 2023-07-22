@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 
@@ -52,7 +53,7 @@ class SearchablePicturesList extends StatelessWidget {
           ),
           trailing: const Icon(Icons.chevron_right),
           onTap: () {
-            Navigator.of(context).pushNamed('/detail', arguments: picture);
+            navService.pushNamed('/detail', args: picture);
           },
         );
       },

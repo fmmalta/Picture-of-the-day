@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:no_context_navigation/no_context_navigation.dart';
 import 'package:picture_of_the_day/app/detail/detail_screen.dart';
 import 'package:picture_of_the_day/app/home/home_screen.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: const HomeScreen(),
+          navigatorKey: NavigationService.navigationKey,
           onGenerateRoute: (settings) {
             if (settings.name == '/') {
               return MaterialPageRoute(
