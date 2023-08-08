@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:picture_of_the_day/app/home/cubit/picture_cubit.dart';
 import 'package:picture_of_the_day/app/home/widgets/searchable_pictures_list.dart';
-import 'package:picture_of_the_day/data/use_case/picture_retriever_use_case.dart';
+import 'package:picture_of_the_day/domain/use_case/fetch_image_usecase.dart';
+import 'package:picture_of_the_day/domain/use_case/retrieve_latest_pictures_list_usecase.dart';
+import 'package:picture_of_the_day/domain/use_case/store_latest_picture_usecase.dart';
 
 import 'package:picture_of_the_day/service_locator.dart';
 
@@ -20,7 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    pictureCubit = PictureCubit(serviceLocator<PictureRetrieverUseCase>())
+    pictureCubit = PictureCubit(
+        fetchImageUseCase: serviceLocator<FetchImageUseCase>(),
+        storeLatestPictureUseCase: serviceLocator<StoreLatestPictureUseCase>(),
+        retrieveLatestPicturesListUseCase:
+            serviceLocator<RetrieveLatestPicturesListUseCase>())
       ..retrieveImage();
     super.initState();
   }

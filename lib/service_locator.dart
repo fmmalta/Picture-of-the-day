@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:picture_of_the_day/core/http/http_service.dart';
-import 'package:picture_of_the_day/data/picture_repository_impl/picture_local_repository_impl.dart';
-import 'package:picture_of_the_day/data/picture_repository_impl/picture_remote_repository_impl.dart';
-import 'package:picture_of_the_day/data/use_case/picture_retriever_use_case.dart';
-import 'package:picture_of_the_day/domain/picture_repository/picture_local_repository.dart';
-import 'package:picture_of_the_day/domain/picture_repository/picture_remote_repository.dart';
+import 'package:picture_of_the_day/data/datasource/picture_data_source.dart';
+import 'package:picture_of_the_day/data/repository/picture_repository_impl.dart';
+import 'package:picture_of_the_day/domain/repository/picture_repository.dart';
+import 'package:picture_of_the_day/domain/use_case/clear_stored_pictures_usecase.dart';
+import 'package:picture_of_the_day/domain/use_case/fetch_image_usecase.dart';
+import 'package:picture_of_the_day/domain/use_case/retrieve_latest_pictures_list_usecase.dart';
+import 'package:picture_of_the_day/domain/use_case/store_latest_picture_usecase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt serviceLocator = GetIt.instance;
@@ -20,15 +22,23 @@ Future<void> initInjection() async {
     () => HttpService(serviceLocator<Dio>()),
   );
 
-  serviceLocator.registerLazySingleton<PictureLocalRepository>(
-    () => LocalRepositoryImpl(serviceLocator<SharedPreferences>()),
-  );
-  serviceLocator.registerLazySingleton<PictureRemoteRepository>(
-    () => RemoteRepositoryImpl(serviceLocator<HttpService>()),
+  serviceLocator.registerLazySingleton(() => PictureDataSource(
+      sharedPreferences: serviceLocator<SharedPreferences>(),
+      httpService: serviceLocator<HttpService>()));
+
+  serviceLocator.registerLazySingleton<PictureRepository>(
+    () => PictureRepositoryImpl(serviceLocator<PictureDataSource>()),
   );
 
-  serviceLocator.registerLazySingleton(() => PictureRetrieverUseCase(
-        localRepository: serviceLocator<PictureLocalRepository>(),
-        remoteRepository: serviceLocator<PictureRemoteRepository>(),
-      ));
+  serviceLocator.registerLazySingleton(
+      () => StoreLatestPictureUseCase(serviceLocator<PictureRepository>()));
+
+  serviceLocator.registerLazySingleton(() =>
+      RetrieveLatestPicturesListUseCase(serviceLocator<PictureRepository>()));
+
+  serviceLocator.registerLazySingleton(
+      () => FetchImageUseCase(serviceLocator<PictureRepository>()));
+
+  serviceLocator.registerLazySingleton(
+      () => ClearStoredPicturesUseCase(serviceLocator<PictureRepository>()));
 }
