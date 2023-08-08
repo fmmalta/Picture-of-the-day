@@ -21,7 +21,8 @@ class PictureDataSource {
     List<PictureEntity> pictureList = [];
     const String defaultUrl = 'https://api.nasa.gov/planetary/apod?api_key=';
     const String apiKey = 'oVyQqfbj4mi1ljYRGktH4ggADkidGgD8mysuf4xU';
-    final DateTime startDate = DateTime(2023, 7, 1);
+    final DateTime startDate =
+        DateTime.now().subtract(const Duration(days: 20));
     final DateTime endDate = DateTime.now();
 
     final String rangeDate =
