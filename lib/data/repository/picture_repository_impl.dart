@@ -1,11 +1,13 @@
-import 'package:picture_of_the_day/data/datasource/picture_data_source.dart';
+import 'package:picture_of_the_day/data/datasource/picture_local_data_source.dart';
+import 'package:picture_of_the_day/data/datasource/picture_remote_data_source.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
 import 'package:picture_of_the_day/domain/repository/picture_repository.dart';
 
 class PictureRepositoryImpl implements PictureRepository {
-  final PictureDataSource _dataSource;
+  final PictureLocalDataSource _dataSource;
+  final PictureRemoteDataSource _remoteDataSource;
 
-  PictureRepositoryImpl(this._dataSource);
+  PictureRepositoryImpl(this._dataSource, this._remoteDataSource);
 
   @override
   Future<bool> clearStoredPictures() async {
@@ -14,7 +16,7 @@ class PictureRepositoryImpl implements PictureRepository {
 
   @override
   Future<List<PictureEntity>> fetchImages() async {
-    return _dataSource.fetchImages();
+    return _remoteDataSource.fetchImages();
   }
 
   @override

@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:picture_of_the_day/core/http/http_service.dart';
-import 'package:picture_of_the_day/data/datasource/picture_data_source.dart';
+import 'package:picture_of_the_day/data/datasource/picture_local_data_source.dart';
+import 'package:picture_of_the_day/data/datasource/picture_remote_data_source.dart';
 import 'package:picture_of_the_day/data/repository/picture_repository_impl.dart';
 import 'package:picture_of_the_day/domain/repository/picture_repository.dart';
 import 'package:picture_of_the_day/domain/use_case/clear_stored_pictures_usecase.dart';
@@ -22,12 +23,14 @@ Future<void> initInjection() async {
     () => HttpService(serviceLocator<Dio>()),
   );
 
-  serviceLocator.registerLazySingleton(() => PictureDataSource(
-      sharedPreferences: serviceLocator<SharedPreferences>(),
-      httpService: serviceLocator<HttpService>()));
+  serviceLocator.registerLazySingleton(
+      () => PictureLocalDataSource(serviceLocator<SharedPreferences>()));
 
   serviceLocator.registerLazySingleton<PictureRepository>(
-    () => PictureRepositoryImpl(serviceLocator<PictureDataSource>()),
+    () => PictureRepositoryImpl(
+      serviceLocator<PictureLocalDataSource>(),
+      serviceLocator<PictureRemoteDataSource>(),
+    ),
   );
 
   serviceLocator.registerLazySingleton(
