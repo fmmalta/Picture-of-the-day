@@ -23,8 +23,11 @@ Future<void> initInjection() async {
     () => HttpService(serviceLocator<Dio>()),
   );
 
-  serviceLocator.registerLazySingleton(
+  serviceLocator.registerLazySingleton<PictureLocalDataSource>(
       () => PictureLocalDataSource(serviceLocator<SharedPreferences>()));
+
+  serviceLocator.registerLazySingleton<PictureRemoteDataSource>(
+      () => PictureRemoteDataSource(serviceLocator<HttpService>()));
 
   serviceLocator.registerLazySingleton<PictureRepository>(
     () => PictureRepositoryImpl(

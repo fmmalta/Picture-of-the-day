@@ -10,23 +10,4 @@ class PictureEntity {
     required this.title,
     required this.date,
   });
-
-  factory PictureEntity.fromJson(Map<String, dynamic> json) {
-    return PictureEntity(
-        url: json['url'] ?? '',
-        explanation: json['explanation'] ?? '',
-        title: json['title'] ?? '',
-        date: json['date'] == null
-            ? DateTime.now()
-            : DateTime.parse(json['date']));
-  }
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'url': url,
-      'explanation': explanation,
-      'title': title,
-      'date': date.toIso8601String(),
-    };
-  }
 }

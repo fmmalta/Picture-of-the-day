@@ -1,4 +1,5 @@
 import 'package:picture_of_the_day/core/http/http_service.dart';
+import 'package:picture_of_the_day/data/models/picture_model.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
 
 class PictureRemoteDataSource {
@@ -20,7 +21,7 @@ class PictureRemoteDataSource {
       final response = await httpService.get('$defaultUrl$apiKey&$rangeDate');
       final rawPictureList = List<dynamic>.from(response.data);
       for (dynamic rawPicture in rawPictureList) {
-        pictureList.add(PictureEntity.fromJson(rawPicture));
+        pictureList.add(PictureModel.fromJson(rawPicture).toEntity());
       }
       return pictureList;
     } catch (error) {

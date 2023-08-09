@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:picture_of_the_day/data/models/picture_model.dart';
 import 'package:picture_of_the_day/domain/entities/picture_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,7 +21,7 @@ class PictureLocalDataSource {
       final result = sharedPreferences.getString(_pictureKey) as String;
       final List<dynamic> decodedPicturesList = json.decode(result);
       for (dynamic picture in decodedPicturesList) {
-        pictures.add(PictureEntity.fromJson(picture));
+        pictures.add(PictureModel.fromJson(picture).toEntity());
       }
       return pictures;
     } else {
